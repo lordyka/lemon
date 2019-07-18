@@ -4,9 +4,10 @@
 import falcon
 
 class ResourceApi(object):
-    def __init__(self, ledhat=None):
+    def __init__(self, ledhat=None, time=None):
         self._ledhat = ledhat
-
+        self._time = time
+        
     def on_post(self, req, resp):
         if req.context['request']:
             body = req.context['request']
@@ -18,7 +19,7 @@ class ResourceApi(object):
                 category = 'undefined'
                 repeat = 3
                 icon_cycle_time = 0.10
-                text_cycle_time = 0.10
+                text_cycle_time = 0.05
                 text_font = None
 
                 if 'category' in body:
@@ -35,6 +36,7 @@ class ResourceApi(object):
 
                 self._ledhat.icon(icon, repeat=repeat, cycle_time=icon_cycle_time)
                 self._ledhat.text(text, cycle_time=text_cycle_time, font=text_font)
+                self._time()
 
                 resp.status = falcon.HTTP_204
             else:
