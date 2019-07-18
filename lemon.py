@@ -21,10 +21,10 @@ class Lemon:
         ])
 
         self._ledhat.text('Lemon')
-
-        self._api = ResourceApi(ledhat=self._ledhat)
+        self._time = Time()
+        self._api = ResourceApi(ledhat=self._ledhat, time=self._time)
 
         self._app.add_route('/api', self._api)
-        self._time = Time()
+        
 lemon = Lemon()
 app = lemon._app
