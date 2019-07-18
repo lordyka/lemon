@@ -14,6 +14,8 @@ class Lemon:
     def __init__(self):
 
         self._ledhat = LedHat()
+        self._time = Time()
+        
         self._ledhat.icon('lemon')
 
         self._app = falcon.API(middleware=[
@@ -21,7 +23,7 @@ class Lemon:
         ])
 
         self._ledhat.text('Lemon')
-        self._time = Time()
+        self._time()
         self._api = ResourceApi(ledhat=self._ledhat, time=self._time)
 
         self._app.add_route('/api', self._api)
