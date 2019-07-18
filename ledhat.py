@@ -24,7 +24,7 @@ class LedHat:
         self._lock_ui = _thread.allocate_lock()
 
         unicorn.rotation(270)
-        unicorn.brightness(1)
+        unicorn.brightness(0.5)
         self._unicorn_width, self._unicorn_height = unicorn.get_shape()
 
         self._default_font_file = 'fonts/Hack-Regular.ttf'
