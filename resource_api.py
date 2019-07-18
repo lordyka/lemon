@@ -4,9 +4,8 @@
 import falcon
 
 class ResourceApi(object):
-    def __init__(self, ledhat=None, influx=None):
+    def __init__(self, ledhat=None):
         self._ledhat = ledhat
-        self._influx = influx
 
     def on_post(self, req, resp):
         if req.context['request']:
@@ -36,9 +35,6 @@ class ResourceApi(object):
 
                 self._ledhat.icon(icon, repeat=repeat, cycle_time=icon_cycle_time)
                 self._ledhat.text(text, cycle_time=text_cycle_time, font=text_font)
-
-                if self._influx != None:
-                    self._influx.write(resource=req.path.replace('/','_'), icon=icon, category=category)
 
                 resp.status = falcon.HTTP_204
             else:
