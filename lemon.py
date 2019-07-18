@@ -25,6 +25,6 @@ class Lemon:
         self._api = ResourceApi(ledhat=self._ledhat)
 
         self._app.add_route('/api', self._api)
-
+        self._time = Time()
 lemon = Lemon()
 app = lemon._app
