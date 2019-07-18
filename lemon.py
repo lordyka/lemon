@@ -5,7 +5,7 @@ import os
 import falcon
 
 from ledhat import LedHat
-from time import Time
+from clock import Clock
 from middleware_json import MiddlewareJson
 
 from resource_api import ResourceApi
@@ -14,7 +14,7 @@ class Lemon:
     def __init__(self):
 
         self._ledhat = LedHat()
-        self._time = Time()
+        self._clock = Clock()
         
         self._ledhat.icon('lemon')
 
@@ -23,8 +23,8 @@ class Lemon:
         ])
 
         self._ledhat.text('Lemon')
-        self._time()
-        self._api = ResourceApi(ledhat=self._ledhat, time=self._time)
+        self._clock()
+        self._api = ResourceApi(ledhat=self._ledhat, clock=self._clock)
 
         self._app.add_route('/api', self._api)
         
