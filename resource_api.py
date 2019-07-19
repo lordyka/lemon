@@ -33,10 +33,11 @@ class ResourceApi(object):
 
                 if 'text_font' in body:
                     text_font = body['text_font']
-
+                    
+                self._clock(False)
                 self._ledhat.icon(icon, repeat=repeat, cycle_time=icon_cycle_time)
                 self._ledhat.text(text, cycle_time=text_cycle_time, font=text_font)
-                self._clock()
+                self._clock(True)
 
                 resp.status = falcon.HTTP_204
             else:
